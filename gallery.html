@@ -12,6 +12,7 @@
       --sami-red: #c0392b;
       --light-bg: #f9f9f9;
       --accent: #e0d2ba;
+      --secondary: #ffffff;
       --font-main: 'Montserrat', sans-serif;
       --font-title: 'Playfair Display', serif;
     }
@@ -89,157 +90,190 @@
       bottom: -12px;
     }
 
-
-    
     .gallery {
-            columns: 3 300px;
-            column-gap: 1.5rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .gallery-item {
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            break-inside: avoid;
-            border-radius: 8px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-        }
-        
-        .gallery-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-bottom: 1px solid var(--secondary);
-        }
-        
-        .gallery-content {
-            padding: 1.2rem;
-        }
-        
-        .gallery-title {
-            font-family: 'Prata', serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .gallery-category {
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .gallery-btn {
-            background: none;
-            border: none;
-            color: var(--accent);
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 0.3rem 0;
-            display: flex;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-        
-        .gallery-btn:hover {
-            color: var(--primary);
-        }
-        
-        .gallery-btn::after {
-            content: "+";
-            margin-left: 0.5rem;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-btn.active::after {
-            content: "−";
-        }
-        
-        .gallery-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-        
-        .gallery-details.active {
-            max-height: 500px;
-            padding-top: 1rem;
-        }
-        
-        .gallery-desc {
-            margin-bottom: 1rem;
-            font-weight: 300;
-            font-size: 0.95rem;
-        }
-        
-        .gallery-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--accent);
-            border-top: 1px dashed var(--secondary);
-            padding-top: 0.8rem;
-        }
+      columns: 3 300px;
+      column-gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .gallery-item {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      break-inside: avoid;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+    
+    .gallery-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid var(--secondary);
+    }
+    
+    .gallery-content {
+      padding: 1.2rem;
+    }
+    
+    .gallery-title {
+      font-family: 'Prata', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .gallery-category {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .gallery-btn {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+    
+    .gallery-btn:hover {
+      color: var(--primary);
+    }
+    
+    .gallery-btn::after {
+      content: "+";
+      margin-left: 0.5rem;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-btn.active::after {
+      content: "−";
+    }
+    
+    .gallery-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    
+    .gallery-details.active {
+      max-height: 500px;
+      padding-top: 1rem;
+    }
+    
+    .gallery-desc {
+      margin-bottom: 1rem;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+    
+    .gallery-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--accent);
+      border-top: 1px dashed var(--secondary);
+      padding-top: 0.8rem;
+    }
 
-        footer {
-            text-align: center;
-            padding: 4rem 2rem;
-            background-color: var(--primary);
-            color: var(--secondary);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .footer-logo {
-            font-family: 'Prata', serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
+    /* NEW FOOTER STYLES */
+    footer {
+      background-color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 4rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      color: var(--sami-red);
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
 
     .social-links {
-            margin: 2rem 0;
-        }
-        
-        .social-links a {
-            color: var(--secondary);
-            margin: 0 1rem;
-            font-size: 1.2rem;
-            text-decoration: none;
-        }
-        
-        .copyright {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .gallery {
-                columns: 1;
-                padding: 1rem;
-            }
-            
-            .about-container {
-                padding: 2rem 1.5rem;
-            }
-        }
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
 
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(192, 57, 43, 0.1);
+      color: var(--sami-red);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background-color: var(--sami-red);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        columns: 1;
+        padding: 1rem;
+      }
+      
+      .about-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .social-links {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .social-links a {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+    }
 </style>
 </head>
 
@@ -503,7 +537,9 @@
     </main>
 
     <footer>
-        &copy; 2025 Kilpisjärvi Reindeer — All rights reserved.
+       <div class="copyright">
+          &copy; 2025 Kilpisjärvi Reindeer — All rights reserved.
+        </div>
       </footer>
 
       <script>
