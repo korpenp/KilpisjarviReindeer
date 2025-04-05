@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studio Tornensis | Handcrafted Artistry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary: #2f2f2f;
+      --sami-red: #c0392b;
+      --light-bg: #f9f9f9;
+      --accent: #e0d2ba;
+      --font-main: 'Montserrat', sans-serif;
+      --font-title: 'Playfair Display', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--light-bg);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      color: var(--sami-red);
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--sami-red);
+    }
+
+    .about {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background-color: var(--sami-red);
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -12px;
+    }
+
+
+    
+    .gallery {
+            columns: 3 300px;
+            column-gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            break-inside: avoid;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .gallery-content {
+            padding: 1.2rem;
+        }
+        
+        .gallery-title {
+            font-family: 'Prata', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .gallery-category {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .gallery-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        
+        .gallery-btn:hover {
+            color: var(--primary);
+        }
+        
+        .gallery-btn::after {
+            content: "+";
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-btn.active::after {
+            content: "−";
+        }
+        
+        .gallery-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .gallery-details.active {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+        
+        .gallery-desc {
+            margin-bottom: 1rem;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+        
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--accent);
+            border-top: 1px dashed var(--secondary);
+            padding-top: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--primary);
+            color: var(--secondary);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .footer-logo {
+            font-family: 'Prata', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+    .social-links {
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--secondary);
+            margin: 0 1rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                columns: 1;
+                padding: 1rem;
+            }
+            
+            .about-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+</style>
+</head>
+
+<body>
+
+    <header>
+        <div>
+          <div class="logo">Kilpisjärvi Reindeer</div>
+          <div class="tagline">Authentic Sámi & Arctic Experiences</div>
+        </div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="Services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </header>
+
+    
+    <main id="gallery">
+        <section class="gallery">
+            <!-- Item 1 - Tall -->
+            <div class="gallery-item">
+                <img src="images/home.jpg" alt="Farm Visit" class="gallery-img" width="400" height="600">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Farm Visit</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">  </p>
+                        <div class="gallery-meta">
+                            <span>Lars-Aslak </span>
+                            <span>2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 2 - Wide -->
+            <div class="gallery-item">
+                <img src="images/4.jpg" alt="Farm Visit" class="gallery-img" width="400" height="400">
+                <div class="gallery-content">
+                    <h3 class="gallery-title">  </h3>
+                    <span class="gallery-category">Farm Visit</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">  </p>
+                        <div class="gallery-meta">
+                            <span>Cythia Hofmann</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 3 - Square -->
+            <div class="gallery-item">
+                <img src="images/5.jpg" alt="Sami Experience" class="gallery-img" width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Sami Experience</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc"> #Traditional #Smoked #Reindeer #Meat </p>
+                        <div class="gallery-meta">
+                            <span>Lars-Aslak</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 4 - Tall -->
+            <div class="gallery-item">
+                <img src="images/6.jpg" alt="Farm Visit" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Farm Visit</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Pikkuhärkä</p>
+                        <div class="gallery-meta">
+                            <span>Pikkuhärkä</span>
+                            <span>2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 5 - Wide -->
+            <div class="gallery-item">
+                <img src="images/7.JPG" alt="Leather Goods" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Sami Experience</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Traditional #Smoked #Reindeer #Meat</p>
+                        <div class="gallery-meta">
+                            <span>Lars-Aslak</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Item 6 - Wide -->
+             <div class="gallery-item">
+                <img src="images/8.JPG" alt="Leather Goods" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Sami Experience</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Reindeer #Sleigh #Ride #Nasu</p>
+                        <div class="gallery-meta">
+                            <span>Lars-Aslak</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+             <!-- Item 7 - Wide -->
+             <div class="gallery-item">
+                <img src="images/9.JPG" alt="Leather Goods" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Sami Experience</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Tradition #Sami #Kammi</p>
+                        <div class="gallery-meta">
+                            <span>Kammi</span>
+                            <span>2018</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Item 8 - Wide -->
+             <div class="gallery-item">
+                <img src="images/10.JPG" alt="Leather Goods" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Reindeer Farm</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Paata</p>
+                        <div class="gallery-meta">
+                            <span>Paata</span>
+                            <span>2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Item 9 - Wide -->
+             <div class="gallery-item">
+                <img src="images/11.JPG" alt="Leather Goods" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Reindeer Farm</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Reindeer</p>
+                        <div class="gallery-meta">
+                            <span>tytö</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Item 10 - Wide -->
+             <div class="gallery-item">
+                <img src="images/12.JPG" alt="Leather Goods" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Reindeer Farm</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Nasu <div id="Smiling"></div></p>
+                        <div class="gallery-meta">
+                            <span>Nasu</span>
+                            <span>2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Item 11 - Wide -->
+             <div class="gallery-item">
+                <img src="images/13.JPG" alt="Hörö" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Reindeer Farm</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Hörö</p>
+                        <div class="gallery-meta">
+                            <span>Hörö</span>
+                            <span>2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+              <!-- Item 12 - Wide -->
+              <div class="gallery-item">
+                <img src="images/HIKE 9.jpg" alt="Pikkuhärkä" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Reindeer Hike</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Hike</p>
+                        <div class="gallery-meta">
+                            <span>Lars-Aslak</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Item 13 - Wide -->
+             <div class="gallery-item">
+                <img src="images/15.jpg" alt="Leather Goods" class="gallery-img"  width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Reindeer Farm</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Eating #New Antler growing #Spring</p>
+                        <div class="gallery-meta">
+                            <span>New Antler</span>
+                            <span>2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 14 - Square -->
+            <div class="gallery-item">
+                <img src="images/1.JPG" alt="shoe" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-title"></h3>
+                    <span class="gallery-category">Nutuka</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">#Traditional #Sami <div id="Shoe"></div></p>
+                        <div class="gallery-meta">
+                            <span>Birit Tornensis</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Kilpisjärvi Reindeer — All rights reserved.
+      </footer>
+
+      <script>
+        // Gallery item details toggle
+        document.querySelectorAll('.gallery-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.nextElementSibling;
+                details.classList.toggle('active');
+                button.classList.toggle('active');
+                
+                if (details.classList.contains('active')) {
+                    details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        });
+         // Wait for all images to load before finalizing layout
+         window.addEventListener('load', function() {
+            // This helps some browsers with the masonry layout
+            if (typeof Masonry !== 'undefined') {
+                new Masonry('.gallery', {
+                    itemSelector: '.gallery-item',
+                    columnWidth: 300,
+                    gutter: 20
+                });
+            } else {
+                // Fallback for browsers without Masonry
+                const gallery = document.querySelector('.gallery');
+                gallery.style.display = 'none';
+                gallery.offsetHeight; // Trigger reflow
+                gallery.style.display = '';
+            }
+        });
+
+    </script>
+
+    </body>
+    </html>
+    
+    

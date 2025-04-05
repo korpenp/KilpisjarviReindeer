@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Tornensis | Handcrafted Artistry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Prata&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3a2e26;
+            --secondary: #e8e1d9;
+            --accent: #a38f78;
+            --text: #2a2118;
+            --light: #f9f7f4;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Blur effect when about is open */
+        body.about-open main {
+            filter: blur(3px);
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        header {
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-family: 'Prata', serif;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .tagline {
+            font-weight: 300;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            margin-top: 1.5rem;
+        }
+        
+        .nav-links a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 400;
+            position: relative;
+            padding-bottom: 2px;
+        }
+        
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .gallery {
+            columns: 3 300px;
+            column-gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            break-inside: avoid;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .gallery-content {
+            padding: 1.2rem;
+        }
+        
+        .gallery-title {
+            font-family: 'Prata', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .gallery-category {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .gallery-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        
+        .gallery-btn:hover {
+            color: var(--primary);
+        }
+        
+        .gallery-btn::after {
+            content: "+";
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-btn.active::after {
+            content: "−";
+        }
+        
+        .gallery-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .gallery-details.active {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+        
+        .gallery-desc {
+            margin-bottom: 1rem;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+        
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--accent);
+            border-top: 1px dashed var(--secondary);
+            padding-top: 0.8rem;
+        }
+        
+        /* About Popup Styles */
+        .about-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.95);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+        
+        .about-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .about-container {
+            max-width: 800px;
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-about {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+        
+        .close-about:hover {
+            color: var(--primary);
+        }
+        
+        .about-title {
+            font-family: 'Prata', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .about-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .about-text {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--primary);
+            color: var(--secondary);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .footer-logo {
+            font-family: 'Prata', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--secondary);
+            margin: 0 1rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                columns: 1;
+                padding: 1rem;
+            }
+            
+            .about-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+          <div class="logo">Kilpisjärvi Reindeer</div>
+          <div class="tagline">Authentic Sámi & Arctic Experiences</div>
+        </div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </header>
+
+    <main id="gallery">
+        <section class="gallery">
+            <!-- Item 1 - Tall -->
+            <div class="gallery-item">
+                <img src="images/1.jpg" alt="Handmade Ceramics" class="gallery-img" width="400" height="600">
+                <div class="gallery-content">
+                    <h3 class="gallery-title">Traditional Sami Shoe</h3>
+                    <span class="gallery-category">Footware Collection</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">Each ceramic piece is hand-thrown using locally sourced clay and glazed with natural minerals. The collection features organic textures inspired by coastal erosion patterns. Fired in a wood-burning kiln, no two pieces are exactly alike.</p>
+                        <div class="gallery-meta">
+                            <span>Stoneware clay</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 2 - Wide -->
+            <div class="gallery-item">
+                <img src="images/2.jpg" alt="Handmade Ceramics" class="gallery-img" width="400" height="400">
+                <div class="gallery-content">
+                    <h3 class="gallery-title">Carved Wooden Bowls</h3>
+                    <span class="gallery-category">Functional Sculpture</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">Hand-carved from single blocks of sustainably harvested walnut, these bowls highlight the wood's natural figuring. The interior is treated with a blend of beeswax and food-grade mineral oil, while the exterior retains tool marks as a testament to the making process.</p>
+                        <div class="gallery-meta">
+                            <span>Black walnut</span>
+                            <span>2022-2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 3 - Square -->
+            <div class="gallery-item">
+                <img src="images/3.jpg" alt="Handmade Ceramics" class="gallery-img" width="400" height="500">
+                <div class="gallery-content">
+                    <h3 class="gallery-title">Embroidered Textiles</h3>
+                    <span class="gallery-category">Wall Hangings</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">This series combines traditional embroidery techniques with contemporary designs on hand-dyed linen. Each piece begins with natural dyeing using plants foraged locally, followed by hundreds of hours of hand-stitching to create textured landscapes.</p>
+                        <div class="gallery-meta">
+                            <span>Linen, silk thread</span>
+                            <span>Ongoing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 4 - Tall -->
+            <div class="gallery-item">
+                <img src="images/4.jpg" alt="Handwoven Baskets" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-title">Handwoven Baskets</h3>
+                    <span class="gallery-category">Fiber Art</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">Woven from willow, rattan, and foraged vines using coil and twining techniques passed down through generations. The organic forms are inspired by seed pods and nests, with each basket developing its own character as the materials age.</p>
+                        <div class="gallery-meta">
+                            <span>Willow, rattan</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 5 - Wide -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Leather Goods" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-title">Handstitched Leather</h3>
+                    <span class="gallery-category">Accessories</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">Vegetable-tanned leather goods featuring traditional saddle stitching. Each piece is cut from full-grain leather and develops a rich patina over time. The designs emphasize clean lines and functionality while showcasing the material's natural qualities.</p>
+                        <div class="gallery-meta">
+                            <span>Italian leather</span>
+                            <span>2022-2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item 6 - Square -->
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=600&q=80" alt="Metal Jewelry" class="gallery-img">
+                <div class="gallery-content">
+                    <h3 class="gallery-title">Forged Metal Jewelry</h3>
+                    <span class="gallery-category">Wearable Art</span>
+                    <button class="gallery-btn">Details</button>
+                    <div class="gallery-details">
+                        <p class="gallery-desc">Hand-forged from recycled copper and sterling silver using traditional metalsmithing techniques. The collection explores organic textures created through hammering, etching, and controlled oxidation processes. Each piece is signed and numbered.</p>
+                        <div class="gallery-meta">
+                            <span>Copper, silver</span>
+                            <span>2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- About Popup -->
+    <div class="about-popup">
+        <div class="about-container">
+            <button class="close-about">&times;</button>
+            <h2 class="about-title">Our Story</h2>
+            <p class="about-text">Studio Tornensis was founded in 2018 by artisan Elena Malkova as a creative space dedicated to preserving traditional craftsmanship through contemporary design. What began as a small ceramics studio has grown into a collective of makers specializing in various handicraft techniques.</p>
+            
+            <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Studio workspace" class="about-image">
+            
+            <p class="about-text">Our philosophy centers on slow creation, sustainable materials, and the beauty of imperfection. We work exclusively with natural materials—clay from local deposits, wood from sustainably managed forests, plant-based dyes, and recycled metals.</p>
+            
+            <h3 style="font-family: 'Prata', serif; color: var(--primary); margin: 1.5rem 0 1rem;">The Making Process</h3>
+            <p class="about-text">Each piece in our collection is conceived through careful observation of material properties and traditional techniques. We embrace the variations that come with handmade processes—the slight asymmetry of a hand-thrown vessel, the unique grain pattern in carved wood, or the subtle variations in naturally dyed textiles.</p>
+            
+            <h3 style="font-family: 'Prata', serif; color: var(--primary); margin: 1.5rem 0 1rem;">Our Materials</h3>
+            <p class="about-text">We source materials responsibly, prioritizing local suppliers and recycled content. Our ceramics use clay from regional deposits, our wood comes from storm-fallen trees or sustainable forestry, and our metalwork utilizes recycled copper and silver.</p>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-logo">Studio Tornensis</div>
+        <p>Handcrafted objects for thoughtful living</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/studiotornensis" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Etsy</a>
+            <a href="mailto:hello@studiotornensis.com">Email</a>
+        </div>
+        
+        <p class="copyright">© 2023 Birit Tornensis. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Gallery item details toggle
+        document.querySelectorAll('.gallery-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.nextElementSibling;
+                details.classList.toggle('active');
+                button.classList.toggle('active');
+                
+                if (details.classList.contains('active')) {
+                    details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        });
+        
+        // About popup functionality
+        const aboutLink = document.querySelector('.about-link');
+        const aboutPopup = document.querySelector('.about-popup');
+        const closeAbout = document.querySelector('.close-about');
+        
+        aboutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.add('about-open');
+            aboutPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeAbout.addEventListener('click', () => {
+            document.body.classList.remove('about-open');
+            aboutPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close about when clicking outside content
+        aboutPopup.addEventListener('click', (e) => {
+            if (e.target === aboutPopup) {
+                document.body.classList.remove('about-open');
+                aboutPopup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+         // Wait for all images to load before finalizing layout
+         window.addEventListener('load', function() {
+            // This helps some browsers with the masonry layout
+            if (typeof Masonry !== 'undefined') {
+                new Masonry('.gallery', {
+                    itemSelector: '.gallery-item',
+                    columnWidth: 300,
+                    gutter: 20
+                });
+            } else {
+                // Fallback for browsers without Masonry
+                const gallery = document.querySelector('.gallery');
+                gallery.style.display = 'none';
+                gallery.offsetHeight; // Trigger reflow
+                gallery.style.display = '';
+            }
+        });
+
+    </script>
+</body>
+</html>

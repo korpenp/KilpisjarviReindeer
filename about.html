@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studio Tornensis | Handcrafted Artistry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary: #2f2f2f;
+      --sami-red: #c0392b;
+      --light-bg: #f9f9f9;
+      --accent: #e0d2ba;
+      --font-main: 'Montserrat', sans-serif;
+      --font-title: 'Playfair Display', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--light-bg);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      color: var(--sami-red);
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--sami-red);
+    }
+
+    .about {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background-color: var(--sami-red);
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -12px;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 4rem;
+      align-items: center;
+    }
+
+    .about-text {
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.9;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-image {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 1024px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      .about-image {
+        order: -1;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-links {
+        margin-top: 1rem;
+      }
+      .section-title {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+    <header>
+        <div>
+          <div class="logo">Kilpisjärvi Reindeer</div>
+          <div class="tagline">Authentic Sámi & Arctic Experiences</div>
+        </div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="Services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </header>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2 class="section-title">Our Story</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Founded in 2018 by brothers Lars-Aslak and Per-Henrik Tornensis, Kilpisjärvi Reindeer is rooted in one of the oldest reindeer herding families in Arctic Lapland. Mentored by our father Juha Tornensis and grandfather Piera Tornensis, the family harmonizes centuries-old Sámi traditions with sustainable tourism.</p>
+        <p>Recognized with the Good Travel Seal and Visit Finland Sustainability certification, we invite you to connect with the Arctic's essence through immersive cultural and nature-based experiences.</p>
+        <p>Our mission is to preserve and share the authentic Sámi way of life while protecting the fragile Arctic ecosystem that has sustained our family for generations.</p>
+      </div>
+      <div class="about-image">
+        <img src="images/HIKE 9.jpg" alt="Tornensis family with reindeer" />
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Studio Tornensis — All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studio Tornensis | Handcrafted Artistry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary: #2f2f2f;
+      --sami-red: #c0392b;
+      --light-bg: #f9f9f9;
+      --accent: #e0d2ba;
+      --font-main: 'Montserrat', sans-serif;
+      --font-title: 'Playfair Display', serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--light-bg);
+      color: var(--primary);
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Background image container */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+
+    header {
+      background: white;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      color: var(--sami-red);
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .nav-links a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--sami-red);
+    }
+
+    .about {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background-color: var(--sami-red);
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -12px;
+    }
+
+    /* Floating Button Text */
+    .floating-button {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3rem;
+      font-family: var(--font-title);
+      color: white;
+      background-color: rgba(192, 57, 43, 0.85); /* sami-red with transparency */
+      padding: 1rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 10;
+      animation: floatUpDown 3s ease-in-out infinite;
+      transition: background-color 0.3s;
+      text-align: center;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+
+    .floating-button:hover {
+      background-color: rgba(192, 57, 43, 1);
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% { transform: translate(-50%, -10px); }
+      50% { transform: translate(-50%, 10px); }
+    }
+
+    /* Snowflake styling */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 1.2rem;
+      z-index: 5;
+      pointer-events: none;
+      user-select: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      background-color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 1024px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      .about-image {
+        order: -1;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-links {
+        margin-top: 1rem;
+      }
+      .section-title {
+        font-size: 2.2rem;
+      }
+      .floating-button {
+        font-size: 2rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .floating-button {
+        font-size: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        width: 90%;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background image container -->
+  <div class="bg-container">
+    <img src="images/home.jpg" alt="Background" class="bg-image">
+  </div>
+  
+  <header>
+    <div>
+      <div class="logo">Kilpisjärvi Reindeer</div>
+      <div class="tagline">Authentic Sámi & Arctic Experiences</div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="Services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+  
+  <script>
+    // Create snowflakes dynamically
+    function createSnowflake() {
+      const snowflake = document.createElement("div");
+      snowflake.classList.add("snowflake");
+      snowflake.textContent = "❄";
+  
+      snowflake.style.left = Math.random() * window.innerWidth + "px";
+      snowflake.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      snowflake.style.fontSize = (Math.random() * 10 + 10) + "px";
+  
+      document.body.appendChild(snowflake);
+  
+      setTimeout(() => {
+        snowflake.remove();
+      }, 5000);
+    }
+  
+    setInterval(createSnowflake, 200);
+  </script>
+</body>
+</html>
